@@ -1,17 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from "react";
 
-import IconButton from '../UI/IconButton';
-import MinusIcon from '../UI/Icons/MinusIcon';
-import PlusIcon from '../UI/Icons/PlusIcon';
-import CounterOutput from './CounterOutput';
-import { log } from '../../log';
+import IconButton from "../UI/IconButton";
+import MinusIcon from "../UI/Icons/MinusIcon";
+import PlusIcon from "../UI/Icons/PlusIcon";
+import CounterOutput from "./CounterOutput";
+import { log } from "../../log";
 
-const isPrime = number => {
-  log(
-    'Calculating if is prime number',
-    2,
-    'other'
-  );
+const isPrime = (number) => {
+  log("Calculating if is prime number", 2, "other");
   if (number <= 1) {
     return false;
   }
@@ -28,7 +24,7 @@ const isPrime = number => {
 };
 
 const Counter = ({ initialCount }) => {
-  log('<Counter /> rendered', 1);
+  log("<Counter /> rendered", 1);
   const initialCountIsPrime = isPrime(initialCount);
 
   const [counter, setCounter] = useState(initialCount);
@@ -44,8 +40,8 @@ const Counter = ({ initialCount }) => {
   return (
     <section className="counter">
       <p className="counter-info">
-        The initial counter value was <strong>{initialCount}</strong>. It{' '}
-        <strong>is {initialCountIsPrime ? 'a' : 'not a'}</strong> prime number.
+        The initial counter value was <strong>{initialCount}</strong>. It{" "}
+        <strong>is {initialCountIsPrime ? "a" : "not a"}</strong> prime number.
       </p>
       <p>
         <IconButton icon={MinusIcon} onClick={decrementHandler}>
@@ -59,4 +55,4 @@ const Counter = ({ initialCount }) => {
     </section>
   );
 };
-export default Counter;
+export default memo(Counter);
